@@ -3,12 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		41246DA85057055900934107 /* Pods_travlr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F92EA350A0BC57432009B80 /* Pods_travlr.framework */; };
 		454B32BDC99F18E31828E6BE /* Pods_travlrTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4F9BA70038A8E805C972DC3 /* Pods_travlrTests.framework */; };
+		6F819AC823E22B2F00E50E36 /* fix_mysql.inc.php in Resources */ = {isa = PBXBuildFile; fileRef = 6F819AC723E22B2F00E50E36 /* fix_mysql.inc.php */; };
 		6FEDD94223DFC6800037A904 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FEDD94123DFC6800037A904 /* AppDelegate.swift */; };
 		6FEDD94423DFC6800037A904 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FEDD94323DFC6800037A904 /* SceneDelegate.swift */; };
 		6FEDD94623DFC6800037A904 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FEDD94523DFC6800037A904 /* ContentView.swift */; };
@@ -17,7 +18,7 @@
 		6FEDD94E23DFC6830037A904 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6FEDD94C23DFC6830037A904 /* LaunchScreen.storyboard */; };
 		6FEDD95923DFC6830037A904 /* travlrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FEDD95823DFC6830037A904 /* travlrTests.swift */; };
 		6FEDD96423DFC6830037A904 /* travlrUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FEDD96323DFC6830037A904 /* travlrUITests.swift */; };
-		6FEDD97223DFD8620037A904 /* databaseConnection.php in Resources */ = {isa = PBXBuildFile; fileRef = 6FEDD97123DFD8620037A904 /* databaseConnection.php */; };
+		6FEDD97223DFD8620037A904 /* Config.php in Resources */ = {isa = PBXBuildFile; fileRef = 6FEDD97123DFD8620037A904 /* Config.php */; };
 		9D2056D19542CFD6B111CF19 /* Pods_travlr_travlrUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2236CCD2B3A2F7CD031A5BFD /* Pods_travlr_travlrUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +43,7 @@
 		2236CCD2B3A2F7CD031A5BFD /* Pods_travlr_travlrUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_travlr_travlrUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		51E1C560EC9763FECB48CB9D /* Pods-travlr-travlrUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-travlr-travlrUITests.release.xcconfig"; path = "Target Support Files/Pods-travlr-travlrUITests/Pods-travlr-travlrUITests.release.xcconfig"; sourceTree = "<group>"; };
 		5C5C322C11B6166F4E4D60E8 /* Pods-travlrTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-travlrTests.release.xcconfig"; path = "Target Support Files/Pods-travlrTests/Pods-travlrTests.release.xcconfig"; sourceTree = "<group>"; };
+		6F819AC723E22B2F00E50E36 /* fix_mysql.inc.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; name = fix_mysql.inc.php; path = ../../../../../Downloads/fix_mysql.inc.php; sourceTree = "<group>"; };
 		6FEDD93E23DFC6800037A904 /* travlr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = travlr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FEDD94123DFC6800037A904 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6FEDD94323DFC6800037A904 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -56,7 +58,7 @@
 		6FEDD95F23DFC6830037A904 /* travlrUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = travlrUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FEDD96323DFC6830037A904 /* travlrUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = travlrUITests.swift; sourceTree = "<group>"; };
 		6FEDD96523DFC6830037A904 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6FEDD97123DFD8620037A904 /* databaseConnection.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = databaseConnection.php; sourceTree = "<group>"; };
+		6FEDD97123DFD8620037A904 /* Config.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = Config.php; sourceTree = "<group>"; };
 		758849391472790A18641425 /* Pods-travlrTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-travlrTests.debug.xcconfig"; path = "Target Support Files/Pods-travlrTests/Pods-travlrTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8B619FD9D8CC8B5F05D6991F /* Pods-travlr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-travlr.release.xcconfig"; path = "Target Support Files/Pods-travlr/Pods-travlr.release.xcconfig"; sourceTree = "<group>"; };
 		9F92EA350A0BC57432009B80 /* Pods_travlr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_travlr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,7 +127,8 @@
 				6FEDD94C23DFC6830037A904 /* LaunchScreen.storyboard */,
 				6FEDD94F23DFC6830037A904 /* Info.plist */,
 				6FEDD94923DFC6830037A904 /* Preview Content */,
-				6FEDD97123DFD8620037A904 /* databaseConnection.php */,
+				6FEDD97123DFD8620037A904 /* Config.php */,
+				6F819AC723E22B2F00E50E36 /* fix_mysql.inc.php */,
 			);
 			path = travlr;
 			sourceTree = "<group>";
@@ -166,7 +169,6 @@
 				758849391472790A18641425 /* Pods-travlrTests.debug.xcconfig */,
 				5C5C322C11B6166F4E4D60E8 /* Pods-travlrTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -290,7 +292,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6FEDD94E23DFC6830037A904 /* LaunchScreen.storyboard in Resources */,
-				6FEDD97223DFD8620037A904 /* databaseConnection.php in Resources */,
+				6F819AC823E22B2F00E50E36 /* fix_mysql.inc.php in Resources */,
+				6FEDD97223DFD8620037A904 /* Config.php in Resources */,
 				6FEDD94B23DFC6830037A904 /* Preview Assets.xcassets in Resources */,
 				6FEDD94823DFC6830037A904 /* Assets.xcassets in Resources */,
 			);
@@ -526,6 +529,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = "";
 			};
 			name = Debug;
 		};
@@ -579,6 +583,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = "";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

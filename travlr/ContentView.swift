@@ -8,9 +8,12 @@
 
 import SwiftUI
 import SwiftyJSON
+import DRDatabase
 
 struct ContentView: View {
+    
     @State private var username: String = "Enter your travlr name here ..."
+    let api_url = "https://trvlrr.000webhostapp.com/dblogic.php"
     
     var body: some View {
         ZStack {
@@ -31,8 +34,9 @@ struct ContentView: View {
                         .zIndex(100)
                 }
                 Button(action: {
-                    print(self.username)
+                    //  print(self.username)
                     self.submitName(input: self.username)
+                    
                 }) {
                     Text(/*@START_MENU_TOKEN@*/"Sign up as a travlr"/*@END_MENU_TOKEN@*/)
                         .font(.body)
@@ -54,51 +58,48 @@ struct ContentView: View {
     }
     
     func submitName(input: String) {
-        //created NSURL
-        let requestURL = URL(string: "http://travlr.epizy.com")
-        
-        //creating NSMutableURLRequest
-        let request = NSMutableURLRequest(url: requestURL! as URL)
-        
-        //setting the method to post
-        request.httpMethod = "POST";
         
         //getting values from text fields
-        let username = input
+        let swift_username = input
         
-        //creating the post parameter by concatenating the keys and values from text field
-        let postParameters = "username="+username;
+        let phpFile: URL! = URL(string: "http://192.168.64.2/index.php") // e.g. http://213.123.456.567/DRDatabase.php
+        let host: URL! = URL(string: "localhost") // If your database is on the same server as the php file,
+        //use 'localhost' , otherwise use the ip address of
+        //your database and configure remote access.
+        let databaseName = "users_db" // name of your MySQL database
+        let Username = "root"
+        let password = ""
         
-        //adding the parameters to request body
-        request.httpBody = postParameters.data(using: String.Encoding.utf8)
+        let connection = DRConnection(host: host, database: databaseName, username: Username, password: password)
+        let database = DRDatabase(phpFileUrl: phpFile, connection: connection)
         
+        let command = String(format: "INSERT INTO users VALUES ('%@')", swift_username)
         
-        //creating a task to send the post request
-        let task = URLSession.shared.dataTask(with: request as URLRequest) {
-            (data, response, error) in
-            
-            if error != nil {
-                print("error is \(error)")
-                return;
+        // execute your command
+        database.execute(sqlCommand: command) { (detailedJsonObject, error) in
+            if let error = error {
+                // some error handling
+                print("\(error.errorCode!): \(error.errorDescription!)") // Includes URLRequest errors and MySQL syntax/server errors
             }
-            
-            //parsing the response
-            do {
-                let json = String(data: data!, encoding: .utf8)
-                               let jsonData = json!.data(using: .utf8)
-                if let json = try? JSON(data: jsonData!) {
-                    //
+            if let jsonObject = detailedJsonObject {
+                if jsonObject.result?.isEmpty == false {
+                    // jsonObject.result! is your data from the database in a [[String:Any]] format
+                    print(jsonObject.result! as Any)
+                } else {
+                    // This happens at a INSERT, UPDATE or DELETE command.
+                    print("There is no JSON! Command successfully sent and executed by database")
                 }
-            } catch {
-                print(error)
             }
-            
         }
-        //executing the task
-        task.resume()
+        
+        
+        
+        // cancel a running request
+        // database.abortExecution()
+        
     }
-    
 }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
