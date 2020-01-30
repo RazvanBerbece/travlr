@@ -1,20 +1,16 @@
 PODS:
   - DRDatabase (1.0.1)
-  - SwiftyJSON (4.3.0)
 
 DEPENDENCIES:
   - DRDatabase
-  - SwiftyJSON (~> 4.0)
 
 SPEC REPOS:
   trunk:
     - DRDatabase
-    - SwiftyJSON
 
 SPEC CHECKSUMS:
   DRDatabase: 7b0142cebd35a2b21d121ed80164b707a8ab7426
-  SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
-PODFILE CHECKSUM: 00beb17a334f1acce04db17fe65418657933dd94
+PODFILE CHECKSUM: 40ade744dc598f707bc525f832826defb6b99af1
 
 COCOAPODS: 1.9.0.beta.2

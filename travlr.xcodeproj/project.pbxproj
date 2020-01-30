@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		41246DA85057055900934107 /* Pods_travlr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F92EA350A0BC57432009B80 /* Pods_travlr.framework */; };
 		454B32BDC99F18E31828E6BE /* Pods_travlrTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4F9BA70038A8E805C972DC3 /* Pods_travlrTests.framework */; };
+		6F7EE57623E2EE7E000462A5 /* submitAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7EE57523E2EE7E000462A5 /* submitAction.swift */; };
 		6F819AC823E22B2F00E50E36 /* fix_mysql.inc.php in Resources */ = {isa = PBXBuildFile; fileRef = 6F819AC723E22B2F00E50E36 /* fix_mysql.inc.php */; };
 		6FEDD94223DFC6800037A904 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FEDD94123DFC6800037A904 /* AppDelegate.swift */; };
 		6FEDD94423DFC6800037A904 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FEDD94323DFC6800037A904 /* SceneDelegate.swift */; };
@@ -43,6 +44,7 @@
 		2236CCD2B3A2F7CD031A5BFD /* Pods_travlr_travlrUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_travlr_travlrUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		51E1C560EC9763FECB48CB9D /* Pods-travlr-travlrUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-travlr-travlrUITests.release.xcconfig"; path = "Target Support Files/Pods-travlr-travlrUITests/Pods-travlr-travlrUITests.release.xcconfig"; sourceTree = "<group>"; };
 		5C5C322C11B6166F4E4D60E8 /* Pods-travlrTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-travlrTests.release.xcconfig"; path = "Target Support Files/Pods-travlrTests/Pods-travlrTests.release.xcconfig"; sourceTree = "<group>"; };
+		6F7EE57523E2EE7E000462A5 /* submitAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = submitAction.swift; sourceTree = "<group>"; };
 		6F819AC723E22B2F00E50E36 /* fix_mysql.inc.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; name = fix_mysql.inc.php; path = ../../../../../Downloads/fix_mysql.inc.php; sourceTree = "<group>"; };
 		6FEDD93E23DFC6800037A904 /* travlr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = travlr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FEDD94123DFC6800037A904 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				6FEDD94923DFC6830037A904 /* Preview Content */,
 				6FEDD97123DFD8620037A904 /* Config.php */,
 				6F819AC723E22B2F00E50E36 /* fix_mysql.inc.php */,
+				6F7EE57523E2EE7E000462A5 /* submitAction.swift */,
 			);
 			path = travlr;
 			sourceTree = "<group>";
@@ -426,6 +429,7 @@
 				6FEDD94223DFC6800037A904 /* AppDelegate.swift in Sources */,
 				6FEDD94423DFC6800037A904 /* SceneDelegate.swift in Sources */,
 				6FEDD94623DFC6800037A904 /* ContentView.swift in Sources */,
+				6F7EE57623E2EE7E000462A5 /* submitAction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
