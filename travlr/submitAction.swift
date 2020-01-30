@@ -11,14 +11,15 @@ import DRDatabase
 
 class DB_action {
     
-    private let api_url = "https://trvlrr.000webhostapp.com/dblogic.php"
+    private let api_url = "http://127.0.0.1/Config.php"
     
-    func submitName(input: String) {
+    func submitRegister(user: String, email: String) {
         
         //getting values from text fields
-        let swift_username = input
+        let swift_username = user
+        let swift_email = email
         
-        let phpFile: URL! = URL(string: "http://192.168.64.2/index.php") // e.g. http://213.123.456.567/DRDatabase.php
+        let phpFile: URL! = URL(string: "\(api_url)")
         let host: URL! = URL(string: "localhost") // If your database is on the same server as the php file,
         //use 'localhost' , otherwise use the ip address of
         //your database and configure remote access.
@@ -29,7 +30,7 @@ class DB_action {
         let connection = DRConnection(host: host, database: databaseName, username: Username, password: password)
         let database = DRDatabase(phpFileUrl: phpFile, connection: connection)
         
-        let command = String(format: "INSERT INTO users VALUES ('%@')", swift_username)
+        let command = String(format: "INSERT INTO users VALUES ('%@', '%@')", swift_username, swift_email)
         
         // execute your command
         database.execute(sqlCommand: command) { (detailedJsonObject, error) in

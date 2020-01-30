@@ -7,40 +7,101 @@
 //
 
 import SwiftUI
-import DRDatabase
 
 struct ContentView: View {
     
-    @State private var username: String = "Enter your travlr name here ..."
+    @State private var usernameInput: String = "Enter username here ..."
+    @State private var emailInput: String = "Enter email here ..."
+    @State private var NullWarning: Text = Text("The form can't be empty. Complete the fields and try again.")
+    @State private var EmailWarning: Text = Text("Wrong email format.")
+    
+    @State private var displayNullWarning: Bool = false
+    @State private var displayEmailWarning: Bool = false
+    
     private let DBconn = DB_action()
+    private let Validator = Validation()
+    private let Hash = Hasher()
     
     var body: some View {
         ZStack {
-            VStack (spacing: 30) {
-                Text("travlr")
+            VStack (spacing: 35.0) {
+                Text("travlr.")
                     .font(.largeTitle)
                     .fontWeight(.black)
                     .multilineTextAlignment(.center)
                     .foregroundColor(Color.white)
-                    .padding(.trailing, 245.0)
-                    .padding(.top, -55)
-                ZStack {
-                    TextField("", text: $username)
-                        .padding(0.0)
-                        .multilineTextAlignment(.center)
-                        .foregroundColor(Color(hue: 1.0, saturation: 0.003, brightness: 0.997))
-                        .background(Color(red: 0.389, green: 0.452, blue: 0.516, opacity: 0.498))
-                        .zIndex(100)
+                    .padding(.trailing, 220.0)
+                    .padding(.top, -125.0)
+                if !self.displayNullWarning && !self.displayEmailWarning {
+                    NullWarning
+                        .hidden()
+                    EmailWarning
+                        .hidden()
                 }
+                else if self.displayNullWarning && !self.displayEmailWarning {
+                    NullWarning
+                        .foregroundColor(Color.red)
+                        .multilineTextAlignment(.center)
+                        .lineLimit(2)
+                        .frame(width: 300.0, height: 50.0)
+                        .font(/*@START_MENU_TOKEN@*/.headline/*@END_MENU_TOKEN@*/)
+                }
+                else if self.displayEmailWarning && !self.displayNullWarning {
+                    EmailWarning
+                        .foregroundColor(Color.red)
+                        .multilineTextAlignment(.center)
+                        .lineLimit(2)
+                        .frame(width: 300.0, height: 50.0)
+                        .font(/*@START_MENU_TOKEN@*/.headline/*@END_MENU_TOKEN@*/)
+                }
+                ZStack {
+                    TextField("", text: $usernameInput)
+                        .frame(width: nil)
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(Color(hue: 1.0, saturation: 0.0, brightness: 0.975))
+                        .background(Color(hue: 0.584, saturation: 0.031, brightness: 0.001, opacity: 0.34))
+                        .zIndex(100)
+                        .frame(width: 350.0)
+                        .cornerRadius(20)
+                        .simultaneousGesture(TapGesture().onEnded {
+                            self.usernameInput = ""
+                        })
+                }
+                ZStack {
+                    TextField("", text: $emailInput)
+                        .padding(0.0)
+                        .frame(width: 350.0)
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(Color(hue: 1.0, saturation: 0.0, brightness: 0.975))
+                        .background(Color(hue: 0.584, saturation: 0.031, brightness: 0.001, opacity: 0.34))
+                        .zIndex(100)
+                        .cornerRadius(20)
+                        .simultaneousGesture(TapGesture().onEnded {
+                            self.emailInput = ""
+                        })
+                }
+                .padding(.top, -25.0)
                 Button(action: {
                     //  print(self.username)
-                    self.DBconn.submitName(input: self.username)
+                    if self.emailInput.isEmpty || self.usernameInput.isEmpty {
+                        self.displayNullWarning = true
+                        self.displayEmailWarning = false;
+                    }
+                    else if !self.Validator.isValidMailInput(input: self.emailInput) && !self.usernameInput.isEmpty{
+                        self.displayEmailWarning = true
+                        self.displayNullWarning = false;
+                    }
+                    else { self.DBconn.submitRegister(user: self.usernameInput, email: self.emailInput)
+                        self.displayNullWarning = false
+                        self.displayEmailWarning = false
+                    }
                 }) {
                     Text(/*@START_MENU_TOKEN@*/"Sign up as a travlr"/*@END_MENU_TOKEN@*/)
                         .font(.body)
                         .multilineTextAlignment(.center)
                         .padding(.all, 20.0)
                         .foregroundColor(Color.white)
+                        .frame(width: 250.0, height: 45.0)
                 }
                 .background(/*@START_MENU_TOKEN@*/Color(hue: 1.0, saturation: 0.021, brightness: 0.471, opacity: 0.432)/*@END_MENU_TOKEN@*/)
                 .cornerRadius(20)

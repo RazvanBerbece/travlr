@@ -55,7 +55,7 @@
         <true/>
         <key>NSExceptionDomains</key>
         <dict>
-            <key>http://localhost/config.php</key>
+            <key>http://localhost/Config.php</key>
             <dict>
                 <key>NSIncludesSubdomains</key>
                 <true/>
