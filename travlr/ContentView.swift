@@ -31,7 +31,7 @@ struct ContentView: View {
                     .multilineTextAlignment(.center)
                     .foregroundColor(Color.white)
                     .padding(.trailing, 220.0)
-                    .padding(.top, -125.0)
+                    .padding(.top, -20.0)
                 if !self.displayNullWarning && !self.displayEmailWarning {
                     NullWarning
                         .hidden()
@@ -59,7 +59,7 @@ struct ContentView: View {
                         .frame(width: nil)
                         .multilineTextAlignment(.center)
                         .foregroundColor(Color(hue: 1.0, saturation: 0.0, brightness: 0.975))
-                        .background(Color(hue: 0.584, saturation: 0.031, brightness: 0.001, opacity: 0.34))
+                        .background(Color(hue: 0.584, saturation: 0.031, brightness: 0.001, opacity: 0.566))
                         .zIndex(100)
                         .frame(width: 350.0)
                         .cornerRadius(20)
@@ -73,7 +73,7 @@ struct ContentView: View {
                         .frame(width: 350.0)
                         .multilineTextAlignment(.center)
                         .foregroundColor(Color(hue: 1.0, saturation: 0.0, brightness: 0.975))
-                        .background(Color(hue: 0.584, saturation: 0.031, brightness: 0.001, opacity: 0.34))
+                        .background(Color(hue: 0.584, saturation: 0.031, brightness: 0.001, opacity: 0.566))
                         .zIndex(100)
                         .cornerRadius(20)
                         .simultaneousGesture(TapGesture().onEnded {

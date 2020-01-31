@@ -11,7 +11,7 @@ import DRDatabase
 
 class DB_action {
     
-    private let api_url = "http://127.0.0.1/Config.php"
+    private let api_url = "http://10.40.21.250/Config.php"
     
     func submitRegister(user: String, email: String) {
         
