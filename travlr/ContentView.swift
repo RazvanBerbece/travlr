@@ -104,7 +104,7 @@ struct ContentView: View {
                         self.displayEmailWarning = true
                         self.displayNullWarning = false;
                     }
-                    else { self.DBconn.submitRegister(user: self.usernameInput, email: self.emailInput, pass: self.Hash.passwordHash(password: self.passInput))
+                    else { self.DBconn.submitRegister(user: self.usernameInput, email: self.emailInput, pass: self.passInput)
                         self.displayNullWarning = false
                         self.displayEmailWarning = false
                         self.displaySuccessSignUp = true
@@ -134,10 +134,8 @@ struct ContentView: View {
                 }
             }
             .zIndex(999)
-            /*
-             .allowsHitTesting(self.signInOn ? false : true)
-             .blur(radius: self.signInOn ? 5.0 : 0)
-             */
+            .allowsHitTesting(self.settings.exitLoginView ? false : true)
+            .blur(radius: self.settings.exitLoginView ? 5.0 : 0)
             Image("travlrBG")
                 .aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fit/*@END_MENU_TOKEN@*/)
                 .zIndex(0)

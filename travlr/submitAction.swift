@@ -9,6 +9,10 @@
 import Foundation
 import DRDatabase
 
+enum AuthResult {
+    case success(Bool), failure(Error)
+}
+
 class DB_action {
     
     // private let api_url = "http://10.41.118.87/Config.php" Needs to be changed for local testing
@@ -20,6 +24,10 @@ class DB_action {
     private let Username = "root"
     private let password = ""
     
+    private let Hash = Hasher()
+    
+    var checked: Bool = false
+    
     func submitRegister(user: String, email: String, pass: String) {
         
         //getting values from text fields
@@ -30,7 +38,7 @@ class DB_action {
         let connection = DRConnection(host: host, database: databaseName, username: Username, password: password)
         let database = DRDatabase(phpFileUrl: phpFile, connection: connection)
         
-        let command = String(format: "INSERT INTO users VALUES ('%@', '%@', '%@')", swift_username, swift_email, swift_pass)
+        let command = String(format: "INSERT INTO users VALUES ('%@', '%@', '%@')", swift_username, swift_email, Hash.passwordHash(password: swift_pass))
         
         // execute your command
         database.execute(sqlCommand: command) { (detailedJsonObject, error) in
@@ -52,26 +60,33 @@ class DB_action {
         // database.abortExecution()
     }
     
-    func checkCredentials(user: String, pass: String) -> Bool {
-        var checked : Bool = false
+    func checkCredentials(
+        user: String,
+        pass: String,
+        completion: @escaping (AuthResult) -> ()
+    ){
         
         let connection = DRConnection(host: host, database: databaseName, username: Username, password: password)
         let database = DRDatabase(phpFileUrl: phpFile, connection: connection)
         
-        let command_getRecord = String(format: "SELECT * FROM users WHERE username = '%@' AND pass = '%@'", user, pass)
+        let command_getRecord = String(format:
+            """
+            SELECT * FROM users WHERE username = '%@' AND pass = '%@'
+            """
+            , user, Hash.passwordHash(password: pass)
+        )
         database.execute(sqlCommand: command_getRecord) { (detailedJsonObject, error) in
             if let error = error {
                 // some error handling
                 print("\(error.errorCode!): \(error.errorDescription!)") // Includes URLRequest errors and MySQL syntax/server errors
+                completion(.failure(error as! Error))
             }
             if let jsonObject = detailedJsonObject {
-                if jsonObject.result?.isEmpty == false { checked = true
+                if jsonObject.result?.isEmpty == false {
                     // jsonObject.result! is your data from the database in a [[String:Any]] format
-                    print(jsonObject.result! as Any)
+                    completion(.success(true))
                 }
-                else { checked = false }
             }
         }
-        return checked
     }
 }

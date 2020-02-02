@@ -58,8 +58,24 @@ struct loginView: View {
                     self.settings.user_input = self.login_username
                     self.settings.pass_input = self.login_password
                     self.settings.exitLoginView = false
-                    print(self.DBconn.checkCredentials(user: self.login_username, pass: self.Hash.passwordHash(password: self.login_password)))
-                }) {
+                    
+                    let returnedValue = self.DBconn.checkCredentials(
+                        user: self.login_username,
+                        pass: self.login_password,
+                        completion: {
+                            (isAvailable) -> Void in
+                            switch isAvailable {
+                            case .success(let granted) :
+                                if granted {
+                                    print("Access Granted !")
+                                } else {
+                                    print("Access Denied.")
+                                }
+                            case .failure(let error): print(error)
+                            }
+                    })
+                })
+                {
                     Text("Login")
                 }
             }
