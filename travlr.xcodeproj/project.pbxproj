@@ -22,6 +22,8 @@
 		6FEDD95923DFC6830037A904 /* travlrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FEDD95823DFC6830037A904 /* travlrTests.swift */; };
 		6FEDD96423DFC6830037A904 /* travlrUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FEDD96323DFC6830037A904 /* travlrUITests.swift */; };
 		6FEDD97223DFD8620037A904 /* Config.php in Resources */ = {isa = PBXBuildFile; fileRef = 6FEDD97123DFD8620037A904 /* Config.php */; };
+		6FF7954723E639B7002F1E08 /* loginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF7954623E639B7002F1E08 /* loginView.swift */; };
+		6FF7954923E65097002F1E08 /* WatchedClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF7954823E65097002F1E08 /* WatchedClass.swift */; };
 		9D2056D19542CFD6B111CF19 /* Pods_travlr_travlrUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2236CCD2B3A2F7CD031A5BFD /* Pods_travlr_travlrUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +67,8 @@
 		6FEDD96323DFC6830037A904 /* travlrUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = travlrUITests.swift; sourceTree = "<group>"; };
 		6FEDD96523DFC6830037A904 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6FEDD97123DFD8620037A904 /* Config.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = Config.php; sourceTree = "<group>"; };
+		6FF7954623E639B7002F1E08 /* loginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginView.swift; sourceTree = "<group>"; };
+		6FF7954823E65097002F1E08 /* WatchedClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchedClass.swift; sourceTree = "<group>"; };
 		758849391472790A18641425 /* Pods-travlrTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-travlrTests.debug.xcconfig"; path = "Target Support Files/Pods-travlrTests/Pods-travlrTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8B619FD9D8CC8B5F05D6991F /* Pods-travlr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-travlr.release.xcconfig"; path = "Target Support Files/Pods-travlr/Pods-travlr.release.xcconfig"; sourceTree = "<group>"; };
 		9F92EA350A0BC57432009B80 /* Pods_travlr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_travlr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -149,7 +153,9 @@
 				6FEDD94123DFC6800037A904 /* AppDelegate.swift */,
 				6FEDD94323DFC6800037A904 /* SceneDelegate.swift */,
 				6FEDD94523DFC6800037A904 /* ContentView.swift */,
+				6FF7954623E639B7002F1E08 /* loginView.swift */,
 				6F7EE57523E2EE7E000462A5 /* submitAction.swift */,
+				6FF7954823E65097002F1E08 /* WatchedClass.swift */,
 				6FEDD94723DFC6830037A904 /* Assets.xcassets */,
 				6FEDD94C23DFC6830037A904 /* LaunchScreen.storyboard */,
 				6FEDD94F23DFC6830037A904 /* Info.plist */,
@@ -450,6 +456,8 @@
 			files = (
 				6FEDD94223DFC6800037A904 /* AppDelegate.swift in Sources */,
 				6FEDD94423DFC6800037A904 /* SceneDelegate.swift in Sources */,
+				6FF7954723E639B7002F1E08 /* loginView.swift in Sources */,
+				6FF7954923E65097002F1E08 /* WatchedClass.swift in Sources */,
 				6FEDD94623DFC6800037A904 /* ContentView.swift in Sources */,
 				6FEBBE7223E34D970063085B /* Validators.swift in Sources */,
 				6FEBBE7523E35B700063085B /* Hasher.swift in Sources */,

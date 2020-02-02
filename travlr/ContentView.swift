@@ -10,21 +10,30 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var usernameInput: String = "Enter username here ..."
-    @State private var emailInput: String = "Enter email here ..."
-    @State private var NullWarning: Text = Text("The form can't be empty. Complete the fields and try again.")
-    @State private var EmailWarning: Text = Text("Wrong email format.")
+    @State private var usernameInput: String = ""
+    @State private var emailInput: String = ""
+    @State private var passInput: String = ""
     
+    @State private var NullWarning: Text = Text("Some fields are empty. Complete the fields and try again.")
+    @State private var EmailWarning: Text = Text("Wrong email format.")
+    @State private var signUpSuccessful: Text = Text("Successfully signed up !")
+    
+    @State private var displaySuccessSignUp: Bool = false
     @State private var displayNullWarning: Bool = false
     @State private var displayEmailWarning: Bool = false
+    
+    @EnvironmentObject var settings: WatchedVariables
+    @State private var overlayOn: Bool = false
     
     private let DBconn = DB_action()
     private let Validator = Validation()
     private let Hash = Hasher()
     
+    // @State private var loginView: View = View()
+    
     var body: some View {
         ZStack {
-            VStack (spacing: 35.0) {
+            VStack (spacing: 15.0) {
                 Text("travlr.")
                     .font(.largeTitle)
                     .fontWeight(.black)
@@ -32,58 +41,62 @@ struct ContentView: View {
                     .foregroundColor(Color.white)
                     .padding(.trailing, 220.0)
                     .padding(.top, -20.0)
-                if !self.displayNullWarning && !self.displayEmailWarning {
-                    NullWarning
-                        .hidden()
-                    EmailWarning
-                        .hidden()
+                ZStack{
+                    if !self.displayNullWarning && !self.displayEmailWarning && !self.displaySuccessSignUp{
+                        NullWarning
+                            .hidden()
+                        EmailWarning
+                            .hidden()
+                        signUpSuccessful
+                            .hidden()
+                    }
+                    else if self.displayNullWarning && !self.displayEmailWarning {
+                        NullWarning
+                            .foregroundColor(Color.red)
+                            .multilineTextAlignment(.center)
+                            .lineLimit(2)
+                            .frame(width: 300.0, height: 50.0)
+                            .font(/*@START_MENU_TOKEN@*/.headline/*@END_MENU_TOKEN@*/)
+                    }
+                    else if self.displayEmailWarning && !self.displayNullWarning {
+                        EmailWarning
+                            .foregroundColor(Color.red)
+                            .multilineTextAlignment(.center)
+                            .lineLimit(2)
+                            .frame(width: 300.0, height: 50.0)
+                            .font(/*@START_MENU_TOKEN@*/.headline/*@END_MENU_TOKEN@*/)
+                    }
+                    else if self.displaySuccessSignUp {
+                        signUpSuccessful
+                            .foregroundColor(Color.green)
+                    }
                 }
-                else if self.displayNullWarning && !self.displayEmailWarning {
-                    NullWarning
-                        .foregroundColor(Color.red)
-                        .multilineTextAlignment(.center)
-                        .lineLimit(2)
-                        .frame(width: 300.0, height: 50.0)
-                        .font(/*@START_MENU_TOKEN@*/.headline/*@END_MENU_TOKEN@*/)
-                }
-                else if self.displayEmailWarning && !self.displayNullWarning {
-                    EmailWarning
-                        .foregroundColor(Color.red)
-                        .multilineTextAlignment(.center)
-                        .lineLimit(2)
-                        .frame(width: 300.0, height: 50.0)
-                        .font(/*@START_MENU_TOKEN@*/.headline/*@END_MENU_TOKEN@*/)
-                }
-                ZStack {
-                    TextField("", text: $usernameInput)
-                        .frame(width: nil)
-                        .multilineTextAlignment(.center)
-                        .foregroundColor(Color(hue: 1.0, saturation: 0.0, brightness: 0.975))
-                        .background(Color(hue: 0.584, saturation: 0.031, brightness: 0.001, opacity: 0.566))
-                        .zIndex(100)
-                        .frame(width: 350.0)
-                        .cornerRadius(20)
-                        .simultaneousGesture(TapGesture().onEnded {
-                            self.usernameInput = ""
-                        })
-                }
-                ZStack {
-                    TextField("", text: $emailInput)
-                        .padding(0.0)
-                        .frame(width: 350.0)
-                        .multilineTextAlignment(.center)
-                        .foregroundColor(Color(hue: 1.0, saturation: 0.0, brightness: 0.975))
-                        .background(Color(hue: 0.584, saturation: 0.031, brightness: 0.001, opacity: 0.566))
-                        .zIndex(100)
-                        .cornerRadius(20)
-                        .simultaneousGesture(TapGesture().onEnded {
-                            self.emailInput = ""
-                        })
-                }
-                .padding(.top, -25.0)
+                TextField("Username here ...", text: $usernameInput)
+                    .frame(width: nil)
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(Color(hue: 1.0, saturation: 0.0, brightness: 0.975))
+                    .background(Color(hue: 0.584, saturation: 0.031, brightness: 0.001, opacity: 0.566))
+                    .zIndex(100)
+                    .frame(width: 350.0)
+                    .cornerRadius(20)
+                TextField("Email here ...", text: $emailInput)
+                    .frame(width: 350.0)
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(Color(hue: 1.0, saturation: 0.0, brightness: 0.975))
+                    .background(Color(hue: 0.584, saturation: 0.031, brightness: 0.001, opacity: 0.566))
+                    .zIndex(100)
+                    .cornerRadius(20)
+                TextField("Password here ...", text: $passInput)
+                    .padding(0.0)
+                    .frame(width: 350.0)
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(Color(hue: 1.0, saturation: 0.0, brightness: 0.975))
+                    .background(Color(hue: 0.584, saturation: 0.031, brightness: 0.001, opacity: 0.566))
+                    .zIndex(100)
+                    .cornerRadius(20)
                 Button(action: {
                     //  print(self.username)
-                    if self.emailInput.isEmpty || self.usernameInput.isEmpty {
+                    if self.emailInput.isEmpty || self.usernameInput.isEmpty || self.passInput.isEmpty {
                         self.displayNullWarning = true
                         self.displayEmailWarning = false;
                     }
@@ -91,9 +104,10 @@ struct ContentView: View {
                         self.displayEmailWarning = true
                         self.displayNullWarning = false;
                     }
-                    else { self.DBconn.submitRegister(user: self.usernameInput, email: self.emailInput)
+                    else { self.DBconn.submitRegister(user: self.usernameInput, email: self.emailInput, pass: self.Hash.passwordHash(password: self.passInput))
                         self.displayNullWarning = false
                         self.displayEmailWarning = false
+                        self.displaySuccessSignUp = true
                     }
                 }) {
                     Text(/*@START_MENU_TOKEN@*/"Sign up as a travlr"/*@END_MENU_TOKEN@*/)
@@ -108,17 +122,35 @@ struct ContentView: View {
                 .overlay(RoundedRectangle(cornerRadius: 20)
                 .stroke(Color.gray, lineWidth: 1))
                 .shadow(radius: 10)
+                Button(action: {
+                    if !self.settings.exitLoginView {
+                        self.settings.exitLoginView = true
+                    }
+                    else {
+                        self.settings.exitLoginView = false
+                    }
+                }) {
+                    Text("Already signed-up")
+                }
             }
             .zIndex(999)
+            /*
+             .allowsHitTesting(self.signInOn ? false : true)
+             .blur(radius: self.signInOn ? 5.0 : 0)
+             */
             Image("travlrBG")
                 .aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fit/*@END_MENU_TOKEN@*/)
-                .zIndex(-1)
+                .zIndex(0)
+            loginView()
+                .cornerRadius(20.0)
+                .zIndex(9999)
+                .opacity(self.settings.exitLoginView ? 1 : 0)
         }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView().environmentObject(WatchedVariables())
     }
 }
