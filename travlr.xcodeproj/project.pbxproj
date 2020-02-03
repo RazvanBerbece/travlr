@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		41246DA85057055900934107 /* Pods_travlr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F92EA350A0BC57432009B80 /* Pods_travlr.framework */; };
 		454B32BDC99F18E31828E6BE /* Pods_travlrTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4F9BA70038A8E805C972DC3 /* Pods_travlrTests.framework */; };
+		6F3BDE7D23E83D130086DC3E /* userPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3BDE7C23E83D130086DC3E /* userPanel.swift */; };
 		6F7EE57623E2EE7E000462A5 /* submitAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7EE57523E2EE7E000462A5 /* submitAction.swift */; };
 		6FEBBE6F23E33FD10063085B /* fix_mysql.inc.php in Resources */ = {isa = PBXBuildFile; fileRef = 6FEBBE6E23E33FD10063085B /* fix_mysql.inc.php */; };
 		6FEBBE7223E34D970063085B /* Validators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FEBBE7123E34D970063085B /* Validators.swift */; };
@@ -48,6 +49,7 @@
 		2236CCD2B3A2F7CD031A5BFD /* Pods_travlr_travlrUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_travlr_travlrUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		51E1C560EC9763FECB48CB9D /* Pods-travlr-travlrUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-travlr-travlrUITests.release.xcconfig"; path = "Target Support Files/Pods-travlr-travlrUITests/Pods-travlr-travlrUITests.release.xcconfig"; sourceTree = "<group>"; };
 		5C5C322C11B6166F4E4D60E8 /* Pods-travlrTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-travlrTests.release.xcconfig"; path = "Target Support Files/Pods-travlrTests/Pods-travlrTests.release.xcconfig"; sourceTree = "<group>"; };
+		6F3BDE7C23E83D130086DC3E /* userPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userPanel.swift; sourceTree = "<group>"; };
 		6F7EE57523E2EE7E000462A5 /* submitAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = submitAction.swift; sourceTree = "<group>"; };
 		6FEBBE6E23E33FD10063085B /* fix_mysql.inc.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = fix_mysql.inc.php; sourceTree = "<group>"; };
 		6FEBBE7123E34D970063085B /* Validators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validators.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				6FEDD94323DFC6800037A904 /* SceneDelegate.swift */,
 				6FEDD94523DFC6800037A904 /* ContentView.swift */,
 				6FF7954623E639B7002F1E08 /* loginView.swift */,
+				6F3BDE7C23E83D130086DC3E /* userPanel.swift */,
 				6F7EE57523E2EE7E000462A5 /* submitAction.swift */,
 				6FF7954823E65097002F1E08 /* WatchedClass.swift */,
 				6FEDD94723DFC6830037A904 /* Assets.xcassets */,
@@ -458,6 +461,7 @@
 				6FEDD94423DFC6800037A904 /* SceneDelegate.swift in Sources */,
 				6FF7954723E639B7002F1E08 /* loginView.swift in Sources */,
 				6FF7954923E65097002F1E08 /* WatchedClass.swift in Sources */,
+				6F3BDE7D23E83D130086DC3E /* userPanel.swift in Sources */,
 				6FEDD94623DFC6800037A904 /* ContentView.swift in Sources */,
 				6FEBBE7223E34D970063085B /* Validators.swift in Sources */,
 				6FEBBE7523E35B700063085B /* Hasher.swift in Sources */,

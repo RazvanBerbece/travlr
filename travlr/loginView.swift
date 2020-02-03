@@ -34,30 +34,39 @@ struct loginView: View {
                     .foregroundColor(Color.red)
             }
             .zIndex(1)
-            .offset(x: 160, y: -58)
+            .offset(x: 160, y: -55)
             .opacity(self.exitPressed ? 0 : 1)
             VStack() {
-                Text("Enter your user credentials here")
-                TextField("Username", text: $login_username)
-                    .frame(width: nil)
-                    .multilineTextAlignment(.center)
-                    .foregroundColor(Color(hue: 1.0, saturation: 0.0, brightness: 0.975))
-                    .background(Color(hue: 0.584, saturation: 0.038, brightness: 0.711))
-                    .zIndex(100)
-                    .frame(width: 350.0)
-                
-                TextField("Password", text: $login_password)
-                    .frame(width: nil)
-                    .multilineTextAlignment(.center)
-                    .foregroundColor(Color(hue: 1.0, saturation: 0.0, brightness: 0.975))
-                    .background(Color(hue: 0.584, saturation: 0.038, brightness: 0.711))
-                    .zIndex(100)
-                    .frame(width: 350.0)
-                
+                Text("Login Panel")
+                    .offset(y: 5)
+                VStack() {
+                    TextField("Username", text: $login_username)
+                        .frame(width: nil)
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(Color(hue: 1.0, saturation: 0.0, brightness: 0.975))
+                        .background(Color(hue: 0.584, saturation: 0.038, brightness: 0.711))
+                        .zIndex(100)
+                        .frame(width: 350.0)
+                    
+                    SecureField("Password", text: $login_password)
+                        .frame(width: nil)
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(Color(hue: 1.0, saturation: 0.0, brightness: 0.975))
+                        .background(Color(hue: 0.584, saturation: 0.038, brightness: 0.711))
+                        .zIndex(100)
+                        .frame(width: 350.0)
+                }
+                .offset(y: 7.5)
                 Button(action: {
-                    self.settings.user_input = self.login_username
-                    self.settings.pass_input = self.login_password
+                    //  ADD FIELD CHECKER FOR NIL INPUT
                     self.settings.exitLoginView = false
+                    
+                    if(self.exitPressed) {
+                        self.settings.exitLoginView = true
+                    }
+                    else {
+                        self.settings.exitLoginView = false
+                    }
                     
                     let returnedValue = self.DBconn.checkCredentials(
                         user: self.login_username,
@@ -65,9 +74,13 @@ struct loginView: View {
                         completion: {
                             (isAvailable) -> Void in
                             switch isAvailable {
-                            case .success(let granted) :
-                                if granted {
+                            case .success(let query) :
+                                if !query.isEmpty {
                                     print("Access Granted !")
+                                    DispatchQueue.main.async {
+                                        self.settings.user_data = query
+                                        self.settings.hasLoggedIn = true
+                                    }
                                 } else {
                                     print("Access Denied.")
                                 }
@@ -76,7 +89,8 @@ struct loginView: View {
                     })
                 })
                 {
-                    Text("Login")
+                    Text("Submit")
+                        .offset(y: 10)
                 }
             }
             .padding(.bottom, 20.0)

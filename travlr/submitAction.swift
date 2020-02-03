@@ -10,7 +10,7 @@ import Foundation
 import DRDatabase
 
 enum AuthResult {
-    case success(Bool), failure(Error)
+    case success([[String : Any]]), failure(Error)
 }
 
 class DB_action {
@@ -18,7 +18,7 @@ class DB_action {
     // private let api_url = "http://10.41.118.87/Config.php" Needs to be changed for local testing
     
     // DB Credentials
-    private let phpFile: URL! = URL(string: "http://10.40.21.250/Config.php")
+    private let phpFile: URL! = URL(string: "http://10.41.117.80/Config.php")
     private let host: URL! = URL(string: "localhost")
     private let databaseName = "users_db"
     private let Username = "root"
@@ -84,7 +84,7 @@ class DB_action {
             if let jsonObject = detailedJsonObject {
                 if jsonObject.result?.isEmpty == false {
                     // jsonObject.result! is your data from the database in a [[String:Any]] format
-                    completion(.success(true))
+                    completion(.success(jsonObject.result!))
                 }
             }
         }

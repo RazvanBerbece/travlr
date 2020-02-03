@@ -10,6 +10,6 @@ import Foundation
 
 class WatchedVariables: ObservableObject {
     @Published var exitLoginView: Bool = false
-    @Published var user_input: String = ""
-    @Published var pass_input: String = ""
+    @Published var user_data: [[String : Any]] = [["" : ""]]
+    @Published var hasLoggedIn: Bool = false
 }
