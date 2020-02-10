@@ -22,7 +22,9 @@ struct userPanel: View {
                     .lineLimit(2)
                     .foregroundColor(Color.white)
                     .offset(x: -60, y: -195)
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+                Button(action: {
+                    self.settings.editSettings = true
+                }) {
                     Text("Settings ")
                         .font(.headline)
                         // .background(Color.white)
@@ -38,6 +40,10 @@ struct userPanel: View {
             Image("travlrBG")
                 .aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fit/*@END_MENU_TOKEN@*/)
                 .zIndex(2)
+            settingsView()
+                .opacity(self.settings.editSettings ? 1 : 0)
+                .frame(width: 100, height: 100, alignment: .center)
+                .zIndex(self.settings.editSettings ? 5 : 0)
         }
     }
 }

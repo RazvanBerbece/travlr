@@ -10,6 +10,9 @@ import Foundation
 
 class WatchedVariables: ObservableObject {
     @Published var exitLoginView: Bool = false
+    
     @Published var user_data: [String] = []
+    
     @Published var hasLoggedIn: Bool = false
+    @Published var editSettings: Bool = false
 }

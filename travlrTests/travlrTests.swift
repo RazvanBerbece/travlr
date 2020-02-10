@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import travlr
+@testable import travlr_
 
 class travlrTests: XCTestCase {
 
@@ -32,3 +32,4 @@ class travlrTests: XCTestCase {
     }
 
 }
+
