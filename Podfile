@@ -5,6 +5,8 @@ target 'travlr' do
   # Comment the next line if you don't want to use dynamic frameworks
   pod 'DRDatabase'
   pod 'CryptoSwift', '~> 1.0'
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
   use_frameworks!
 
   # Pods for travlr
