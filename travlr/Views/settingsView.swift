@@ -12,7 +12,12 @@ import FirebaseAuth
 
 struct settingsView: View {
     
+    @State private var showImagePicker : Bool = false
+    @State private var image : Image? = nil
+    
     @EnvironmentObject var settings: WatchedVariables
+    
+    private var StorageHandler = storageHandler()
     
     var body: some View {
         ZStack {
@@ -31,8 +36,18 @@ struct settingsView: View {
                         .cornerRadius(20)
                 }
                 Button(action: {
-                    
-                }) {
+                    self.showImagePicker = true
+                    self.StorageHandler.uploadProfileImage(((self.settings.image != nil ? self.settings.image! : UIImage(imageLiteralResourceName: "userIcon"))), completion: {
+                        (url) in
+                        if url == nil {
+                            print("Failed to upload.")
+                        }
+                        else {
+                            print(url!)
+                        }
+                    })
+                })
+                {
                     Text("Upload Profile Picture")
                         .padding(.vertical, 7.5)
                         .frame(width: 250)
@@ -40,6 +55,9 @@ struct settingsView: View {
                         .cornerRadius(20)
                 }
                 .offset(y: 5)
+            }
+            .sheet(isPresented: self.$showImagePicker){
+                ImagePickerView().environmentObject(self.settings)
             }
             Button(action: {
                 self.settings.editSettings = false

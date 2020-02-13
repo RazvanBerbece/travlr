@@ -22,6 +22,11 @@ struct userPanel: View {
                     .lineLimit(2)
                     .foregroundColor(Color.white)
                     .offset(x: -60, y: -195)
+                Image(uiImage: ((self.settings.image != nil ? self.settings.image! : UIImage(imageLiteralResourceName: "userIcon"))))
+                    .resizable()
+                    .cornerRadius(60)
+                    .frame(width: 80.0, height: 80.0)
+                    .offset(y: -175)
                 Button(action: {
                     self.settings.editSettings = true
                 }) {
