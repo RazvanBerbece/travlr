@@ -74,12 +74,7 @@ struct loginView: View {
                             print("You have successfully logged in")
                             self.settings.hasLoggedIn = true
                             if let user = user {
-                                
-                                let email = user.user.email
-                                
-                                self.settings.user_data.append(email!)
-                                
-                                print(self.settings.user_data)
+                                print(user.user.photoURL)
                             }
                         }
                         else { print("Wrong log-in credentials.") }

@@ -12,35 +12,57 @@ import Firebase
 import FirebaseStorage
 import SwiftUI
 
-class storageHandler {
+class StorageHandler {
     
-    var storageRef: StorageReference? = nil
-    var picURL: String = ""
+    private let user = Auth.auth().currentUser
+    private var settings = WatchedVariables()
     
-    func uploadProfileImage(_ image: UIImage, completion: @escaping ((_ url: URL?)->())) {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        let user = Auth.auth().currentUser
+    func uploadProfileImage(_ image: UIImage) {
+        guard let uid = self.user?.uid else { return }
         let storageRef = Storage.storage().reference().child("user/\(uid)")
         
-        guard let imageData = image.jpegData(compressionQuality: 0.75) else { return }
+        guard let imageData = image.jpegData(compressionQuality: 0.8) else { return }
         
         let metaData = StorageMetadata()
         metaData.contentType = "image/jpg"
         
         storageRef.putData(imageData, metadata: metaData) { metaData, error in
             if error == nil, metaData != nil {
-                
                 storageRef.downloadURL { url, error in
-                    completion(url)
-                    // success!
+                    if error != nil, url != nil {
+                        let changeRequest = self.user!.createProfileChangeRequest()
+                        changeRequest.photoURL = url
+                        changeRequest.commitChanges {
+                            (error) in
+                            if error != nil {
+                                print(error)
+                            }
+                            else {
+                                print("Successfully updated profile data ! \(url)")
+                            }
+                        }
+                    }
                 }
-            } else {
-                // failed
-                completion(nil)
+            }
+            else {
+                // failed upload
             }
         }
     }
     
-    // func changeProfileImage()
+    func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+    }
     
+    func downloadImage(from url: URL) {
+        print("Download Started")
+        getData(from: url) { data, response, error in
+            guard let data = data, error == nil else { return }
+            print(response?.suggestedFilename ?? url.lastPathComponent)
+            print("Download Finished")
+            DispatchQueue.main.async() {
+                self.settings.image = UIImage(data: data)
+            }
+        }
+    }
 }

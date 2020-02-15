@@ -7,30 +7,45 @@
 //
 
 import SwiftUI
+import FirebaseAuth
+import SDWebImageSwiftUI
 
 struct userPanel: View {
     
     @EnvironmentObject var settings: WatchedVariables
-    let screenSize: CGRect = UIScreen.main.bounds
+    private let screenSize: CGRect = UIScreen.main.bounds
+    
+    private let user = UserStruct(user: Auth.auth().currentUser!)
+    private var storageHandler = StorageHandler()
     
     var body: some View {
         ZStack() {
             VStack() {
-                Text("Welcome, \(((self.settings.hasLoggedIn ? self.settings.user_data.first! : nil) ?? "Default"))")
+                Text("Welcome, \(self.user.email ?? "default")")
                     .font(.title)
                     .fontWeight(.semibold)
                     .lineLimit(2)
                     .foregroundColor(Color.white)
                     .offset(x: -60, y: -195)
-                Image(uiImage: ((self.settings.image != nil ? self.settings.image! : UIImage(imageLiteralResourceName: "userIcon"))))
-                    .resizable()
-                    .cornerRadius(60)
-                    .frame(width: 80.0, height: 80.0)
-                    .offset(y: -175)
+                WebImage(url: self.user.photoURL)
+                    .onSuccess { image, cacheType in
+                        print(image)
+                }
+                .resizable()
+                .cornerRadius(60)
+                .frame(width: 80.0, height: 80.0)
+                .offset(y: -175)
+                /*
+                 Image(uiImage: self.storageHandler.downloadImage(from: self.user.photoURL))
+                 .resizable()
+                 .cornerRadius(60)
+                 .frame(width: 80.0, height: 80.0)
+                 .offset(y: -175)
+                 */
                 Button(action: {
                     self.settings.editSettings = true
                 }) {
-                    Text("Settings ")
+                    Text("Settings")
                         .font(.headline)
                         // .background(Color.white)
                         .multilineTextAlignment(.center)

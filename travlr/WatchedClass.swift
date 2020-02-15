@@ -8,11 +8,11 @@
 
 import Foundation
 import UIKit
+import FirebaseAuth
 
 class WatchedVariables: ObservableObject {
     @Published var exitLoginView: Bool = false
     
-    @Published var user_data: [String] = []
     @Published var image: UIImage? = nil
     
     @Published var hasLoggedIn: Bool = false

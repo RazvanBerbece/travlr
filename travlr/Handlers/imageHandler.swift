@@ -32,6 +32,7 @@ struct ImagePickerViewController: UIViewControllerRepresentable {
     class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
         
         var parent: ImagePickerViewController
+        let storageHandler = StorageHandler()
         
         init(_ parent: ImagePickerViewController) {
             self.parent = parent
@@ -41,7 +42,9 @@ struct ImagePickerViewController: UIViewControllerRepresentable {
             let imagePicked = info[.originalImage] as! UIImage
             parent.image = imagePicked
             parent.presentationMode.dismiss()
-            picker.dismiss(animated: true, completion: nil)
+            picker.dismiss(animated: true, completion: {
+                self.storageHandler.uploadProfileImage(imagePicked)
+            })
         }
         
         func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {

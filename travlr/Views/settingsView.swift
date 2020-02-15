@@ -17,7 +17,10 @@ struct settingsView: View {
     
     @EnvironmentObject var settings: WatchedVariables
     
-    private var StorageHandler = storageHandler()
+    private var storageHandler = StorageHandler()
+    private var currentUser = Auth.auth().currentUser
+    
+    private let semaphore = DispatchSemaphore(value: 0)
     
     var body: some View {
         ZStack {
@@ -27,7 +30,8 @@ struct settingsView: View {
                     .foregroundColor(Color.white)
                     .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                 Button(action: {
-                    
+                    /* self.StorageHandler.changeDisplayName(newName: "")
+                     */
                 }) {
                     Text("Change Username")
                         .padding(.vertical, 7.5)
@@ -37,15 +41,7 @@ struct settingsView: View {
                 }
                 Button(action: {
                     self.showImagePicker = true
-                    self.StorageHandler.uploadProfileImage(((self.settings.image != nil ? self.settings.image! : UIImage(imageLiteralResourceName: "userIcon"))), completion: {
-                        (url) in
-                        if url == nil {
-                            print("Failed to upload.")
-                        }
-                        else {
-                            print(url!)
-                        }
-                    })
+                    // self.storageHandler.uploadProfileImage(((self.settings.image != nil ? self.settings.image! : UIImage(imageLiteralResourceName: "userIcon"))))
                 })
                 {
                     Text("Upload Profile Picture")
