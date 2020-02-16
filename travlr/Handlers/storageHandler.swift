@@ -64,5 +64,6 @@ class StorageHandler {
                 self.settings.image = UIImage(data: data)
             }
         }
+        // return self.settings.image ?? UIImage(systemName: "heart.fill") as! UIImage
     }
 }

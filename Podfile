@@ -6,7 +6,7 @@ target 'travlr' do
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Firebase/Storage'
-  pod 'SDWebImageSwiftUI'
+  pod 'Kingfisher/SwiftUI'
   use_frameworks!
 
   # Pods for travlr

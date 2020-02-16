@@ -8,7 +8,7 @@
 
 import SwiftUI
 import FirebaseAuth
-import SDWebImageSwiftUI
+import struct Kingfisher.KFImage
 
 struct userPanel: View {
     
@@ -17,6 +17,8 @@ struct userPanel: View {
     
     private let user = UserStruct(user: Auth.auth().currentUser!)
     private var storageHandler = StorageHandler()
+    
+    private let currentUser = Auth.auth().currentUser
     
     var body: some View {
         ZStack() {
@@ -27,14 +29,6 @@ struct userPanel: View {
                     .lineLimit(2)
                     .foregroundColor(Color.white)
                     .offset(x: -60, y: -195)
-                WebImage(url: self.user.photoURL)
-                    .onSuccess { image, cacheType in
-                        print(image)
-                }
-                .resizable()
-                .cornerRadius(60)
-                .frame(width: 80.0, height: 80.0)
-                .offset(y: -175)
                 /*
                  Image(uiImage: self.storageHandler.downloadImage(from: self.user.photoURL))
                  .resizable()
@@ -42,6 +36,28 @@ struct userPanel: View {
                  .frame(width: 80.0, height: 80.0)
                  .offset(y: -175)
                  */
+                
+                KFImage(self.currentUser?.photoURL)
+                    .onSuccess { r in
+                        // r: RetrieveImageResult
+                        print("success: \(r)")
+                }
+                .onFailure { e in
+                    // e: KingfisherError
+                    print("failure: \(e)")
+                    print(self.currentUser?.photoURL)
+                }
+                .placeholder {
+                    // Placeholder while downloading.
+                    Image(systemName: "arrow.2.circlepath.circle")
+                        .font(.largeTitle)
+                        .opacity(0.3)
+                }
+                .resizable()
+                .cornerRadius(60)
+                .frame(width: 80.0, height: 80.0)
+                .offset(y: -175)
+                
                 Button(action: {
                     self.settings.editSettings = true
                 }) {
